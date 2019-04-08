@@ -9,20 +9,14 @@ var stringifyJSON = function(obj) {
   var outputArr = [];
 
   //if null, boolean, number, string
-  if (obj === null) {
-    return 'null';
-  }
-  if (obj === 'boolean') {
-    return '' + obj;
-  }
-  if (typeof obj === 'number') {
+  if (obj === null || typeof obj === 'boolean' || typeof obj === 'number') {
     return '' + obj;
   }
   if (typeof obj === 'string') {
     return '\"' + obj + '\"';
   }
 
-  //if object is an array, iterate
+  //if array
   if(Array.isArray(obj)){
     if(obj[0] === undefined){
       return '[]';
@@ -33,7 +27,7 @@ var stringifyJSON = function(obj) {
     } return '[' + outputArr + ']';
   }
 
-  //if object
+  //else whatever is left is object
   if (obj instanceof Object) {
     var outputArr2 = [];
     if(Object.keys(obj).length === 0) {
